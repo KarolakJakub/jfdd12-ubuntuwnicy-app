@@ -14,43 +14,51 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+const AnswerInput = function (props) {
 
-const AnswerInput = (props) => {
     const classes = useStyles();
 
-   const { answer, isCorrect, answerId, onCheckboxChange, name, onAnswerChange, onClickRemoveAnswer } = props
-   return (
-       <div className="answerInputsStyles">
-           <TextField
-               className="answerInput"
-               value={answer}
-               placeholder='Wprowadź odpowiedź'
-               onChange={onAnswerChange}
-               label="Odpowiedź"
-               multiline
-               variant="outlined"
-               answerid={answerId}
-               name={answerId}
-           ></TextField>
-           <Checkbox
-               className="isAnswerCorrect"
-               color="default"
-               iscorrect={'isCorrect'}
-               onClick={onCheckboxChange}
-               answerid={answerId}
-               inputProps={{
-                   'aria-label': 'checkbox with default color',
-               }}
-               checked={isCorrect}
-               name={name}
-           />
-           <button className='removeAnswerButton' name={answerId} onClick={onClickRemoveAnswer} >
-               X
+    const { answer, isCorrect, answerId, onCheckboxChange, name, onAnswerChange, onClickRemoveAnswer } = props
+    
+    return (
+        <div className="answerInputsStyles">
+            <TextField
+                className="answerInput"
+                value={answer}
+                placeholder='Wprowadź odpowiedź'
+                onChange={onAnswerChange}
+                label="Odpowiedź"
+                multiline
+                variant="outlined"
+                answerid={answerId}
+                name={answerId}
+            ></TextField>
+            <Checkbox
+                className="isAnswerCorrect"
+                color="default"
+                iscorrect={'isCorrect'}
+                onClick={onCheckboxChange}
+                answerid={answerId}
+                inputProps={{
+                    'aria-label': 'checkbox with default color',
+                }}
+                checked={isCorrect}
+                name={name}
+            />
+            <button className='removeAnswerButton' name={answerId} onClick={onClickRemoveAnswer} >
+                X
            </button>
-       </div>
-   )
+        </div>
+    )
 }
 
-export default AnswerInput
+function arePropsEqual(prevProps, currProps) {
+    if( prevProps.answer === currProps.answer && prevProps.isCorrect === currProps.isCorrect && prevProps.answerId === currProps.answerId && prevProps.name === currProps.name){
+        return true
+    }else{
+        return false
+    }
+}
 
+export default React.memo(AnswerInput, arePropsEqual)
 
