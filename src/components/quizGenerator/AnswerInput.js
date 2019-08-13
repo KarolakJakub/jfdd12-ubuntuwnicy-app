@@ -22,7 +22,6 @@ const AnswerInput = function (props) {
     
     return (
         <div className="answerInputsStyles">
-            {console.log('answer input render')}
             <TextField
                 className="answerInput"
                 value={answer}
