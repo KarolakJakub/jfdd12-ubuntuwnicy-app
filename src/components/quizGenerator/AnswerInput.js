@@ -14,13 +14,15 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function AnswerInput(props) {
-    console.log('answers render')
+const AnswerInput = function (props) {
+
     const classes = useStyles();
 
     const { answer, isCorrect, answerId, onCheckboxChange, name, onAnswerChange, onClickRemoveAnswer } = props
+    
     return (
         <div className="answerInputsStyles">
+            {console.log('answer input render')}
             <TextField
                 className="answerInput"
                 value={answer}
@@ -51,16 +53,13 @@ function AnswerInput(props) {
     )
 }
 
-function arePropsEqual(prevProps, nextProps) {
-    if (prevProps.answer === nextProps.answer) {
-
+function arePropsEqual(prevProps, currProps) {
+    if( prevProps.answer === currProps.answer && prevProps.isCorrect === currProps.isCorrect && prevProps.answerId === currProps.answerId && prevProps.name === currProps.name){
         return true
-    } else {
+    }else{
         return false
     }
 }
 
 export default React.memo(AnswerInput, arePropsEqual)
-
-
 

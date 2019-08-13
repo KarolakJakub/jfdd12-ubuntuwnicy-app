@@ -304,12 +304,12 @@ class QuizGenWrapper extends React.PureComponent {
     }
   };
 
+
+
   renderQuestions = () => {
 
     const { questions } = this.state.quiz;
     const questionsCount = questions.length - 1;
-
-    const memoAnswersList = React.memo(function() {})
 
     return questions.map((question, index) => (
       <div
@@ -337,12 +337,9 @@ class QuizGenWrapper extends React.PureComponent {
         />
         <AddAnswerButton onClick={() => this.handleAddAnswer(question.id)} />
       </div>
-    ));
+      ))
+
   };
-
-
-
-
 
   render() {
 
